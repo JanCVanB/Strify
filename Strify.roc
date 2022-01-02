@@ -5,5 +5,10 @@ interface Strify
 
 strify = \x ->
     when x is
-        Num y -> Num.toStr y
-        Str y -> y
+        Str y -> strifyStr y
+        Num y -> strifyNum y
+
+strifyStr = \s -> "\"\(s)\""
+
+strifyNum = \n -> Num.toStr n
+

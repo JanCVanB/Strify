@@ -5,23 +5,23 @@ interface TestStrings
 
 testStrings =
     failures = ""
-        |> testEmpty
-        |> testNonempty
+        |> testEmptyString
+        |> testNonemptyString
     when failures is
         "" -> "✅ Strify works on strings."
         f -> f
 
-testEmpty = \failures ->
+testEmptyString = \failures ->
     actual = strify (Str "")
-    expected = ""
+    expected = "\"\""
     if actual == expected then
         failures
     else
         Str.concat failures "\n🚨 Strify does not work with empty strings!\n"
 
-testNonempty = \failures ->
+testNonemptyString = \failures ->
     actual = strify (Str "Six")
-    expected = "Six"
+    expected = "\"Six\""
     if actual == expected then
         failures
     else
