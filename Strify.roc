@@ -5,12 +5,16 @@ interface Strify
 
 strify = \x ->
     when x is
+        Bool y -> strifyBool y
         ListListNum y -> strifyListListNum y
         ListListStr y -> strifyListListStr y
         ListNum y -> strifyListNum y
         ListStr y -> strifyListStr y
         Num y -> strifyNum y
         Str y -> strifyStr y
+
+strifyBool = \b ->
+    if b then "True" else "False"
 
 strifyList = \l ->
     l

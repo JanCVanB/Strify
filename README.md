@@ -5,7 +5,8 @@ A [Roc](https://roc-lang.org) library for converting things to `Str`
 ## Formatting
 
 Formatting mimics the behavior of
-[JavaScript's JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+[JavaScript's JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify),
+except that `true` and `false` are capitalized.
 
 ## Supported input types
 
@@ -14,6 +15,13 @@ Formatting mimics the behavior of
 ```coffee
 strify (Str "") == "\"\""
 strify (Str "Text") == "\"Text\""
+```
+
+### `Bool`
+
+```coffee
+strify (Bool False) == "False"
+strify (Bool True) == "True"
 ```
 
 ### `Num`
