@@ -2,6 +2,11 @@
 
 A [Roc](https://roc-lang.org) library for converting things to `Str`
 
+## Formatting
+
+Formatting mimics the behavior of
+[JavaScript's JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+
 ## Supported input types
 
 ### `Str`
