@@ -5,15 +5,25 @@ interface Strify
 
 strify = \x ->
     when x is
-        Str y -> strifyStr y
+        ListNum y -> strifyListNum y
+        ListStr y -> strifyListStr y
         Num y -> strifyNum y
-        List y -> strifyList y
+        Str y -> strifyStr y
 
 strifyList = \l ->
     l
-        |> List.map strifyStr
         |> Str.joinWith ", "
         |> \s -> "[\(s)]"
+
+strifyListNum = \l ->
+    l
+        |> List.map strifyNum
+        |> strifyList
+
+strifyListStr = \l ->
+    l
+        |> List.map strifyStr
+        |> strifyList
 
 strifyNum = \n -> Num.toStr n
 

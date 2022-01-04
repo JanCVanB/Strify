@@ -21,6 +21,13 @@ strify (Num 6) == "6"
 ### `List Str`
 
 ```coffee
-strify (List []) == "[]"
-strify (List ["a", "b", "c"]) == "[\"a\", \"b\", \"c\"]"
+strify (ListStr []) == "[]"
+strify (ListStr ["a", "b", "c"]) == "[\"a\", \"b\", \"c\"]"
+```
+
+### `List Num`
+
+```coffee
+strify (ListNum []) == "[]"
+strify (ListNum [1, 2, 3]) == "[1, 2, 3]"
 ```
