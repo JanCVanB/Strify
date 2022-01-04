@@ -5,6 +5,8 @@ interface Strify
 
 strify = \x ->
     when x is
+        ListListNum y -> strifyListListNum y
+        ListListStr y -> strifyListListStr y
         ListNum y -> strifyListNum y
         ListStr y -> strifyListStr y
         Num y -> strifyNum y
@@ -14,6 +16,16 @@ strifyList = \l ->
     l
         |> Str.joinWith ", "
         |> \s -> "[\(s)]"
+
+strifyListListNum = \l ->
+    l
+        |> List.map strifyListNum
+        |> strifyList
+
+strifyListListStr = \l ->
+    l
+        |> List.map strifyListStr
+        |> strifyList
 
 strifyListNum = \l ->
     l

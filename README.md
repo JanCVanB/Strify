@@ -36,3 +36,17 @@ strify (ListStr ["a", "b", "c"]) == "[\"a\", \"b\", \"c\"]"
 strify (ListNum []) == "[]"
 strify (ListNum [1, 2, 3]) == "[1, 2, 3]"
 ```
+
+### `List List Str`
+
+```coffee
+strify (ListListStr [[]]) == "[[]]"
+strify (ListListStr [["a"], ["b"], ["c"]]) == "[[\"a\"], [\"b\"], [\"c\"]]"
+```
+
+### `List List Num`
+
+```coffee
+strify (ListListNum [[]]) == "[[]]"
+strify (ListListNum [[1], [2], [3]]) == "[[1], [2], [3]]"
+```
