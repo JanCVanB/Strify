@@ -6,6 +6,15 @@ interface Strify
 strify = \x ->
     when x is
         Bool y -> strifyBool y
+        DictBoolBool y -> strifyDictNumNum y
+        DictBoolNum y -> strifyDictNumStr y
+        DictBoolStr y -> strifyDictNumStr y
+        DictNumBool y -> strifyDictNumBool y
+        DictNumNum y -> strifyDictNumNum y
+        DictNumStr y -> strifyDictNumStr y
+        DictStrBool y -> strifyDictStrBool y
+        DictStrNum y -> strifyDictStrNum y
+        DictStrStr y -> strifyDictStrStr y
         ListListBool y -> strifyListListBool y
         ListListNum y -> strifyListListNum y
         ListListStr y -> strifyListListStr y
@@ -17,6 +26,34 @@ strify = \x ->
 
 strifyBool = \b ->
     if b then "True" else "False"
+
+strifyDict = \strifyKey, strifyValue ->
+    \d =>
+        d
+            |> Dict.walk [] \l, k, v ->
+                kStr = strifyKey k
+                vStr = strifyValue v
+                List.append l "\(kStr) => \(vStr)"
+            |> Str.joinWith ", "
+            |> \s -> if s == "" then "{::}" else "{: \(s) :}"
+
+strifyDictBoolBool = strifyDict strifyBool strifyBool
+
+strifyDictBoolNum = strifyDict strifyBool strifyNum
+
+strifyDictBoolStr = strifyDict strifyBool strifyStr
+
+strifyDictNumBool = strifyDict strifyNum strifyBool
+
+strifyDictNumNum = strifyDict strifyNum strifyNum
+
+strifyDictNumStr = strifyDict strifyNum strifyStr
+
+strifyDictStrBool = strifyDict strifyStr strifyBool
+
+strifyDictStrNum = strifyDict strifyStr strifyNum
+
+strifyDictStrStr = strifyDict strifyStr strifyStr
 
 strifyList = \l ->
     l

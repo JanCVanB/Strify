@@ -6,6 +6,7 @@ app "test_all"
         pf.Stdout.{ line },
         pf.Task.{ await },
         TestBools.{ testBools },
+        TestDicts.{ testDicts },
         TestLists.{ testLists },
         TestNums.{ testNums },
         TestStrs.{ testStrs },
@@ -14,8 +15,9 @@ app "test_all"
 
 
 main =
-    _ <- await (line testStrs)
     _ <- await (line testBools)
     _ <- await (line testNums)
+    _ <- await (line testStrs)
     _ <- await (line testLists)
+    _ <- await (line testDicts)
     line "Finished running Strify tests."

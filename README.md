@@ -54,13 +54,6 @@ Therefore, Strify can only support specific input types and needs you to tell it
 
 ## Supported input types
 
-### `Str`
-
-```coffee
-strify (Str "") == "\"\""
-strify (Str "Text") == "\"Text\""
-```
-
 ### `Bool`
 
 ```coffee
@@ -73,6 +66,13 @@ strify (Bool True) == "True"
 ```coffee
 strify (Num 0) == "0"
 strify (Num 6) == "6"
+```
+
+### `Str`
+
+```coffee
+strify (Str "") == "\"\""
+strify (Str "Text") == "\"Text\""
 ```
 
 ### `List Str`
@@ -116,6 +116,8 @@ strify (ListListBool [[True], [False], [True]]) == "[[True], [False], [True]]"
 strify (ListListNum [[]]) == "[[]]"
 strify (ListListNum [[1], [2], [3]]) == "[[1], [2], [3]]"
 ```
+
+<!-- TODO: Add Dict* docs -->
 
 ## Formatting
 
