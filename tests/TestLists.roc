@@ -6,12 +6,12 @@ interface TestLists
 testLists =
     failures = ""
         |> testEmptyList
-        |> testListOfStrings
-        |> testListOfNumbers
-        |> testListOfListsOfStrings
-        |> testListOfListsOfNumbers
+        |> testListOfStrs
+        |> testListOfNums
+        |> testListOfListsOfStrs
+        |> testListOfListsOfNums
     when failures is
-        "" -> "✅ Strify works on lists."
+        "" -> "✅ Strify works on Lists."
         f -> f
 
 testEmptyList = \failures ->
@@ -20,36 +20,36 @@ testEmptyList = \failures ->
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with empty lists!\n"
+        Str.concat failures "\n🚨 Strify does not work on empty Lists!\n"
 
-testListOfListsOfNumbers = \failures ->
+testListOfListsOfNums = \failures ->
     actual = strify (ListListNum [[6], [6], [6]])
     expected = "[[6], [6], [6]]"
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with lists of lists!\n"
+        Str.concat failures "\n🚨 Strify does not work on Lists of Lists of Nums!\n"
 
-testListOfListsOfStrings = \failures ->
+testListOfListsOfStrs = \failures ->
     actual = strify (ListListStr [["6"], ["6"], ["6"]])
     expected = "[[\"6\"], [\"6\"], [\"6\"]]"
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with lists of lists!\n"
+        Str.concat failures "\n🚨 Strify does not work on Lists of Lists of Strs!\n"
 
-testListOfNumbers = \failures ->
+testListOfNums = \failures ->
     actual = strify (ListNum [6, 6, 6])
     expected = "[6, 6, 6]"
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with lists of numbers!\n"
+        Str.concat failures "\n🚨 Strify does not work on Lists of Nums!\n"
 
-testListOfStrings = \failures ->
+testListOfStrs = \failures ->
     actual = strify (ListStr ["6", "6", "6"])
     expected = "[\"6\", \"6\", \"6\"]"
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with lists of strings!\n"
+        Str.concat failures "\n🚨 Strify does not work on Lists of Strs!\n"

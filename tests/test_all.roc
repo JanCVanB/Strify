@@ -6,14 +6,14 @@ app "test_all"
         pf.Stdout.{ line },
         pf.Task.{ await },
         TestLists.{ testLists },
-        TestNumbers.{ testNumbers },
-        TestStrings.{ testStrings },
+        TestNums.{ testNums },
+        TestStrs.{ testStrs },
     ]
     provides [ main ] to pf
 
 
 main =
-    _ <- await (line testStrings)
-    _ <- await (line testNumbers)
+    _ <- await (line testStrs)
+    _ <- await (line testNums)
     _ <- await (line testLists)
     line "Finished running Strify tests."

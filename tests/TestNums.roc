@@ -1,16 +1,16 @@
-interface TestNumbers
-    exposes [ testNumbers ]
+interface TestNums
+    exposes [ testNums ]
     imports [ Strify.{ strify } ]
 
 
-testNumbers =
+testNums =
     failures = ""
         |> testZero
         |> testPositive
         |> testNegative
         # TODO: Test manually-typed numbers (U8, I8, etc.)
     when failures is
-        "" -> "✅ Strify works on numbers."
+        "" -> "✅ Strify works on Nums."
         f -> f
 
 testNegative = \failures ->
@@ -19,7 +19,7 @@ testNegative = \failures ->
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with negative numbers!\n"
+        Str.concat failures "\n🚨 Strify does not work with negative Nums!\n"
 
 testPositive = \failures ->
     actual = strify (Num 6)
@@ -27,7 +27,7 @@ testPositive = \failures ->
     if actual == expected then
         failures
     else
-        Str.concat failures "\n🚨 Strify does not work with positive numbers!\n"
+        Str.concat failures "\n🚨 Strify does not work with positive Nums!\n"
 
 testZero = \failures ->
     actual = strify (Num 0)
