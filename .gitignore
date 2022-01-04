@@ -1,3 +1,4 @@
+example
 tests/*
 !tests/test_*.roc
 !tests/Test*.roc
