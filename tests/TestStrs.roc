@@ -1,6 +1,6 @@
 interface TestStrs
     exposes [ testStrs ]
-    imports [ Strify.{ strify } ]
+    imports [ Strify.{ strify }, Test.{ test } ]
 
 
 testStrs =
@@ -11,18 +11,12 @@ testStrs =
         "" -> "✅ Strify works on Strs."
         f -> f
 
-testEmptyStr = \failures ->
-    actual = strify (Str "")
-    expected = "\"\""
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with empty Strs!\n"
+testEmptyStr =
+    expectation = strify (Str "") == "\"\""
+    otherwise = "\n🚨 Strify does not work with empty Strs!\n"
+    test expectation otherwise
 
-testNonemptyStr = \failures ->
-    actual = strify (Str "Six")
-    expected = "\"Six\""
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with nonempty Strs!\n"
+testNonemptyStr =
+    expectation = strify (Str "Six") == "\"Six\""
+    otherwise = "\n🚨 Strify does not work with nonempty Strs!\n"
+    test expectation otherwise

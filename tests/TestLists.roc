@@ -1,6 +1,6 @@
 interface TestLists
     exposes [ testLists ]
-    imports [ Strify.{ strify } ]
+    imports [ Strify.{ strify }, Test.{ test } ]
 
 
 testLists =
@@ -14,42 +14,27 @@ testLists =
         "" -> "✅ Strify works on Lists."
         f -> f
 
-testEmptyList = \failures ->
-    actual = strify (ListStr [])
-    expected = "[]"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work on empty Lists!\n"
+testEmptyList = 
+    expectation = strify (ListStr []) == "[]"
+    otherwise = "\n🚨 Strify does not work on empty Lists!\n"
+    test expectation otherwise
 
-testListOfListsOfNums = \failures ->
-    actual = strify (ListListNum [[6], [6], [6]])
-    expected = "[[6], [6], [6]]"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work on Lists of Lists of Nums!\n"
+testListOfListsOfNums =
+    expectation = strify (ListListNum [[6], [6], [6]]) == "[[6], [6], [6]]"
+    otherwise = "\n🚨 Strify does not work on Lists of Lists of Nums!\n"
+    test expectation otherwise
 
-testListOfListsOfStrs = \failures ->
-    actual = strify (ListListStr [["6"], ["6"], ["6"]])
-    expected = "[[\"6\"], [\"6\"], [\"6\"]]"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work on Lists of Lists of Strs!\n"
+testListOfListsOfStrs =
+    expectation = strify (ListListStr [["6"], ["6"], ["6"]]) == "[[\"6\"], [\"6\"], [\"6\"]]"
+    otherwise = "\n🚨 Strify does not work on Lists of Lists of Strs!\n"
+    test expectation otherwise
 
-testListOfNums = \failures ->
-    actual = strify (ListNum [6, 6, 6])
-    expected = "[6, 6, 6]"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work on Lists of Nums!\n"
+testListOfNums =
+    expectation = strify (ListNum [6, 6, 6]) == "[6, 6, 6]"
+    otherwise = "\n🚨 Strify does not work on Lists of Nums!\n"
+    test expectation otherwise
 
-testListOfStrs = \failures ->
-    actual = strify (ListStr ["6", "6", "6"])
-    expected = "[\"6\", \"6\", \"6\"]"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work on Lists of Strs!\n"
+testListOfStrs =
+    expectation = strify (ListStr ["6", "6", "6"]) == "[\"6\", \"6\", \"6\"]"
+    otherwise = "\n🚨 Strify does not work on Lists of Strs!\n"
+    test expectation otherwise

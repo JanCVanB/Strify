@@ -1,6 +1,6 @@
 interface TestNums
     exposes [ testNums ]
-    imports [ Strify.{ strify } ]
+    imports [ Strify.{ strify }, Test.{ test } ]
 
 
 testNums =
@@ -13,26 +13,17 @@ testNums =
         "" -> "✅ Strify works on Nums."
         f -> f
 
-testNegative = \failures ->
-    actual = strify (Num -6)
-    expected = "-6"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with negative Nums!\n"
+testNegative =
+    expectation = strify (Num -6) == "-6"
+    otherwise = "\n🚨 Strify does not work with negative Nums!\n"
+    test expectation otherwise
 
-testPositive = \failures ->
-    actual = strify (Num 6)
-    expected = "6"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with positive Nums!\n"
+testPositive =
+    expectation = strify (Num 6) == "6"
+    otherwise = "\n🚨 Strify does not work with positive Nums!\n"
+    test expectation otherwise
 
-testZero = \failures ->
-    actual = strify (Num 0)
-    expected = "0"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with 0!\n"
+testZero =
+    expectation = strify (Num 0) == "0"
+    otherwise = "\n🚨 Strify does not work with 0!\n"
+    test expectation otherwise

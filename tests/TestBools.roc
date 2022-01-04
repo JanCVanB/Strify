@@ -1,6 +1,6 @@
 interface TestBools
     exposes [ testBools ]
-    imports [ Strify.{ strify } ]
+    imports [ Strify.{ strify }, Test.{ test } ]
 
 
 testBools =
@@ -11,18 +11,12 @@ testBools =
         "" -> "✅ Strify works on Bools."
         f -> f
 
-testFalse = \failures ->
-    actual = strify (Bool False)
-    expected = "False"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with False Bools!\n"
+testFalse =
+    expectation = strify (Bool False) == "False"
+    otherwise = "\n🚨 Strify does not work on False Bools!\n"
+    test expectation otherwise
 
-testTrue = \failures ->
-    actual = strify (Bool True)
-    expected = "True"
-    if actual == expected then
-        failures
-    else
-        Str.concat failures "\n🚨 Strify does not work with True Bools!\n"
+testTrue =
+    expectation = strify (Bool True) == "True"
+    otherwise = "\n🚨 Strify does not work on True Bools!\n"
+    test expectation otherwise
