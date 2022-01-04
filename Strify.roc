@@ -6,8 +6,10 @@ interface Strify
 strify = \x ->
     when x is
         Bool y -> strifyBool y
+        ListListBool y -> strifyListListBool y
         ListListNum y -> strifyListListNum y
         ListListStr y -> strifyListListStr y
+        ListBool y -> strifyListBool y
         ListNum y -> strifyListNum y
         ListStr y -> strifyListStr y
         Num y -> strifyNum y
@@ -21,6 +23,11 @@ strifyList = \l ->
         |> Str.joinWith ", "
         |> \s -> "[\(s)]"
 
+strifyListListBool = \l ->
+    l
+        |> List.map strifyListBool
+        |> strifyList
+
 strifyListListNum = \l ->
     l
         |> List.map strifyListNum
@@ -29,6 +36,11 @@ strifyListListNum = \l ->
 strifyListListStr = \l ->
     l
         |> List.map strifyListStr
+        |> strifyList
+
+strifyListBool = \l ->
+    l
+        |> List.map strifyBool
         |> strifyList
 
 strifyListNum = \l ->

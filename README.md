@@ -38,6 +38,13 @@ strify (ListStr []) == "[]"
 strify (ListStr ["a", "b", "c"]) == "[\"a\", \"b\", \"c\"]"
 ```
 
+### `List Bool`
+
+```coffee
+strify (ListBool []) == "[[]]"
+strify (ListBool [True, False, True]) == "[True, False, True]"
+```
+
 ### `List Num`
 
 ```coffee
@@ -50,6 +57,13 @@ strify (ListNum [1, 2, 3]) == "[1, 2, 3]"
 ```coffee
 strify (ListListStr [[]]) == "[[]]"
 strify (ListListStr [["a"], ["b"], ["c"]]) == "[[\"a\"], [\"b\"], [\"c\"]]"
+```
+
+### `List List Bool`
+
+```coffee
+strify (ListListBool [[]]) == "[[]]"
+strify (ListListBool [[True], [False], [True]]) == "[[True], [False], [True]]"
 ```
 
 ### `List List Num`

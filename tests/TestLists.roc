@@ -7,8 +7,10 @@ testLists =
     failures = ""
         |> testEmptyList
         |> testListOfStrs
+        |> testListOfBools
         |> testListOfNums
         |> testListOfListsOfStrs
+        |> testListOfListsOfBools
         |> testListOfListsOfNums
     when failures is
         "" -> "✅ Strify works on Lists."
@@ -19,6 +21,11 @@ testEmptyList =
     otherwise = "\n🚨 Strify does not work on empty Lists!\n"
     test expectation otherwise
 
+testListOfListsOfBools =
+    expectation = strify (ListListBool [[True], [False], [True]]) == "[[True], [False], [True]]"
+    otherwise = "\n🚨 Strify does not work on Lists of Lists of Bools!\n"
+    test expectation otherwise
+
 testListOfListsOfNums =
     expectation = strify (ListListNum [[6], [6], [6]]) == "[[6], [6], [6]]"
     otherwise = "\n🚨 Strify does not work on Lists of Lists of Nums!\n"
@@ -27,6 +34,11 @@ testListOfListsOfNums =
 testListOfListsOfStrs =
     expectation = strify (ListListStr [["6"], ["6"], ["6"]]) == "[[\"6\"], [\"6\"], [\"6\"]]"
     otherwise = "\n🚨 Strify does not work on Lists of Lists of Strs!\n"
+    test expectation otherwise
+
+testListOfBools =
+    expectation = strify (ListBool [True, False, True]) == "[True, False, True]"
+    otherwise = "\n🚨 Strify does not work on Lists of Bools!\n"
     test expectation otherwise
 
 testListOfNums =
